@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offres Web Locales – Création de Sites PME</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Bricolage+Grotesque:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ec;
+    --ink: #0e0d0b;
+    --blue: #1a4fd6;
+    --blue-dark: #1240b0;
+    --blue-pale: #e8eefb;
+    --orange: #e85d20;
+    --orange-pale: #fdf0ea;
+    --green: #1a7a4a;
+    --green-pale: #e8f5ee;
+    --muted: #7a7060;
+    --warm: #e5e0d6;
+    --white: #ffffff;
+    --dark: #0e0d0b;
+    --emerald: #6dd4a0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--ink);
+    padding: 64px 32px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg, transparent, transparent 24px,
+      rgba(255,255,255,0.02) 24px, rgba(255,255,255,0.02) 25px
+    );
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 44px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .header-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .header-eyebrow span { color: var(--emerald); }
+
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 18px;
+    letter-spacing: -1px;
+    position: relative;
+  }
+
+  .header h1 em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.35);
+  }
+
+  .header-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.4);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  /* ── NOTICE ── */
+  .notice {
+    max-width: 860px;
+    margin: 44px auto 8px;
+    padding: 0 24px;
+  }
+
+  .notice-inner {
+    background: var(--white);
+    border: 1px solid var(--warm);
+    border-left: 4px solid var(--blue);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .notice-inner .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+  .notice-inner strong { color: var(--ink); }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 52px 0 28px;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1.5px solid var(--warm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    animation: fadeUp 0.55s ease both;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.15s; }
+  .card:nth-child(3) { animation-delay: 0.25s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:hover { transform: translateY(-8px); box-shadow: 0 24px 64px rgba(14,13,11,0.12); }
+  .card.featured { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232,93,32,0.12); }
+
+  .card-band { padding: 22px 24px 20px; position: relative; }
+  .card-band.blue   { background: var(--blue-pale); }
+  .card-band.orange { background: var(--orange-pale); }
+  .card-band.green  { background: var(--green-pale); }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+
+  .blue  .card-tag { background: var(--blue);   color: #fff; }
+  .orange .card-tag { background: var(--orange); color: #fff; }
+  .green  .card-tag { background: var(--green);  color: #fff; }
+
+  .card-band h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+
+  .card-ideal { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+  .popular-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: var(--orange);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .card-price { padding: 20px 24px 18px; border-bottom: 1px solid var(--warm); }
+
+  .price-old {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-bottom: 2px;
+  }
+
+  .price-main {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-main.blue   { color: var(--blue); }
+  .price-main.orange { color: var(--orange); }
+  .price-main.green  { color: var(--green); }
+
+  .price-split { font-size: 0.78rem; color: var(--muted); }
+  .price-split strong { color: var(--ink); }
+
+  .card-objective {
+    margin: 18px 24px 0;
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--ink);
+    display: flex;
+    gap: 8px;
+  }
+
+  .card-objective .arrow { font-size: 1rem; flex-shrink: 0; }
+
+  .card-features { padding: 18px 24px 22px; flex: 1; }
+
+  .features-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .features-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  .check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 10px; font-weight: 700;
+  }
+
+  .check.blue   { background: var(--blue-pale);   color: var(--blue); }
+  .check.orange { background: var(--orange-pale);  color: var(--orange); }
+  .check.green  { background: var(--green-pale);   color: var(--green); }
+
+  .card-cta { padding: 0 24px 24px; }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    transition: all 0.18s;
+    letter-spacing: 0.2px;
+  }
+
+  .btn.blue   { background: var(--blue);   color: #fff; }
+  .btn.orange { background: var(--orange); color: #fff; }
+  .btn.green  { background: var(--green);  color: #fff; }
+
+  .btn.blue:hover   { background: var(--blue-dark); transform: translateY(-1px); }
+  .btn.orange:hover { background: #c94d18; transform: translateY(-1px); }
+  .btn.green:hover  { background: #155e39; transform: translateY(-1px); }
+
+  /* ── MAINTENANCE ── */
+  .maint-section {
+    max-width: 1060px;
+    margin: 52px auto 0;
+    padding: 0 20px;
+    animation: fadeUp 0.55s ease 0.35s both;
+  }
+
+  .maint-box {
+    background: var(--dark);
+    border-radius: 20px;
+    padding: 40px 44px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .maint-left .eyebrow {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--emerald); margin-bottom: 12px;
+  }
+
+  .maint-left h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem; font-weight: 800;
+    color: #fff; line-height: 1.15; margin-bottom: 12px;
+  }
+
+  .maint-left p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7; margin-bottom: 24px;
+  }
+
+  .maint-price-block { display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; }
+
+  .maint-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800;
+    color: var(--emerald); letter-spacing: -1px;
+  }
+
+  .maint-freq { font-size: 0.88rem; color: rgba(255,255,255,0.4); }
+
+  .maint-note {
+    display: inline-block;
+    background: rgba(109,212,160,0.12);
+    border: 1px solid rgba(109,212,160,0.25);
+    color: var(--emerald);
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+
+  .btn-maint {
+    display: inline-block;
+    background: var(--emerald);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    padding: 13px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background 0.18s, transform 0.18s;
+    margin-bottom: 14px;
+  }
+
+  .btn-maint:hover { background: #54c78d; transform: translateY(-2px); }
+
+  .maint-right { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .maint-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 18px 16px;
+  }
+
+  .maint-item .mi-icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .maint-item .mi-title { font-size: 0.85rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .maint-item .mi-desc { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .footer-note {
+    max-width: 860px;
+    margin: 44px auto 60px;
+    padding: 0 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .footer-note strong { color: var(--ink); }
+
+  /* ══════════════════════════════
+     MODAL OVERLAY
+  ══════════════════════════════ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14,13,11,0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 0;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.35);
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+  }
+
+  .modal-overlay.open .modal {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Modal header band */
+  .modal-header {
+    padding: 28px 32px 24px;
+    position: relative;
+  }
+
+  .modal-header.blue   { background: var(--blue-pale); }
+  .modal-header.orange { background: var(--orange-pale); }
+  .modal-header.green  { background: var(--green-pale); }
+  .modal-header.dark   { background: var(--dark); }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.08);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    color: var(--ink);
+    transition: background 0.15s;
+    line-height: 1;
+  }
+
+  .modal-header.dark .modal-close { background: rgba(255,255,255,0.1); color: #fff; }
+  .modal-close:hover { background: rgba(0,0,0,0.15); }
+
+  .modal-formule-tag {
+    display: inline-block;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+
+  .modal-formule-tag.blue   { background: var(--blue);   color: #fff; }
+  .modal-formule-tag.orange { background: var(--orange); color: #fff; }
+  .modal-formule-tag.green  { background: var(--green);  color: #fff; }
+  .modal-formule-tag.dark   { background: var(--emerald); color: var(--ink); }
+
+  .modal-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem; font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .modal-header.dark .modal-title { color: #fff; }
+
+  .modal-subtitle { font-size: 0.82rem; color: var(--muted); }
+  .modal-header.dark .modal-subtitle { color: rgba(255,255,255,0.45); }
+
+  /* Modal body */
+  .modal-body { padding: 28px 32px 32px; }
+
+  /* Call option */
+  .call-option {
+    background: var(--bg);
+    border: 1.5px solid var(--warm);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    text-decoration: none;
+    transition: border-color 0.18s, box-shadow 0.18s;
+  }
+
+  .call-option:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(26,122,74,0.1);
+  }
+
+  .call-icon {
+    width: 44px; height: 44px;
+    background: var(--green-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .call-text strong {
+    display: block;
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .call-text span {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .call-number {
+    margin-left: auto;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem; font-weight: 700;
+    color: var(--green);
+  }
+
+  /* Divider */
+  .or-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .or-divider::before,
+  .or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--warm);
+  }
+
+  /* Form */
+  .form-group { margin-bottom: 16px; }
+
+  .form-label {
+    display: block;
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--warm);
+    border-radius: 10px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--white);
+    transition: border-color 0.18s, box-shadow 0.18s;
+    outline: none;
+  }
+
+  .form-input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(26,79,214,0.1);
+  }
+
+  .form-input::placeholder { color: #b0a898; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .form-note {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .form-note a { color: var(--blue); text-decoration: none; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.95rem; font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+
+  .btn-submit.blue   { background: var(--blue);   color: #fff; }
+  .btn-submit.orange { background: var(--orange); color: #fff; }
+  .btn-submit.green  { background: var(--green);  color: #fff; }
+  .btn-submit.dark   { background: var(--emerald); color: var(--ink); }
+
+  .btn-submit:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+
+  .btn-submit .spinner {
+    display: none;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  .btn-submit.dark .spinner { border-color: rgba(14,13,11,0.3); border-top-color: var(--ink); }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .btn-submit.loading .spinner { display: block; }
+  .btn-submit.loading .btn-text { display: none; }
+
+  /* Success state */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 8px 0 4px;
+  }
+
+  .success-msg .success-icon {
+    width: 56px; height: 56px;
+    background: var(--green-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 16px;
+  }
+
+  .success-msg h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .success-msg p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* Error */
+  .form-error {
+    display: none;
+    font-size: 0.78rem;
+    color: #c0392b;
+    margin-top: 4px;
+  }
+
+  .form-input.error { border-color: #c0392b; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .cards-wrap { grid-template-columns: 1fr; max-width: 480px; }
+    .maint-box { grid-template-columns: 1fr; padding: 32px 28px; }
+    .maint-right { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 540px) {
+    .header { padding: 48px 20px 56px; }
+    .maint-right { grid-template-columns: 1fr; }
+    .modal-body { padding: 24px 24px 28px; }
+    .modal-header { padding: 24px 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-eyebrow"><span>●</span> Agence Web Locale</div>
+  <h1>Votre site, vos clients,<br><em>votre ville.</em></h1>
+  <p class="header-sub">Des offres taillées pour les artisans et PME locales qui veulent décrocher plus d'appels depuis Google.</p>
+</header>
+
+<!-- NOTICE -->
+<div class="notice">
+  <div class="notice-inner">
+    <span class="icon">🔒</span>
+    <div><strong>Hébergement 100 % à votre nom.</strong> Vous restez propriétaire de votre hébergement et domaine (5–15 €/mois chez OVH, Hostinger ou LWS). Je vous accompagne dans la configuration gratuitement.</div>
+  </div>
+</div>
+
+<!-- FORMULES -->
+<p class="section-label">Choisissez votre formule</p>
+
+<div class="cards-wrap">
+
+  <!-- F1 -->
+  <div class="card">
+    <div class="card-band blue">
+      <span class="card-tag">Formule 1</span>
+      <h2>Présence Locale</h2>
+      <p class="card-ideal">Idéal pour l'artisan qui débute en ligne</p>
+    </div>
+    <div class="card-price">
+      <div class="price-old">Valeur estimée : 1 200 €</div>
+      <div class="price-main blue">590 €</div>
+      <div class="price-split">ou <strong>2 × 295 €</strong> sans frais</div>
+    </div>
+    <div class="card-objective">
+      <span class="arrow">🎯</span>
+      <span>Transformer votre fiche Google en <strong>machine à appels</strong>.</span>
+    </div>
+    <div class="card-features">
+      <p class="features-label">Ce qui est inclus</p>
+      <ul class="features-list">
+        <li><span class="check blue">✓</span> Landing page optimisée conversion</li>
+        <li><span class="check blue">✓</span> Mise en avant des avis Google</li>
+        <li><span class="check blue">✓</span> Bouton d'appel direct (mobile-first)</li>
+        <li><span class="check blue">✓</span> Formulaire de devis intégré</li>
+        <li><span class="check blue">✓</span> SEO local basique (1 ville ciblée)</li>
+        <li><span class="check blue">✓</span> Installation Google Analytics</li>
+        <li><span class="check blue">✓</span> Livraison sous 7 jours</li>
+      </ul>
+    </div>
+    <div class="card-cta">
+      <button class="btn blue" onclick="openModal('Formule 1 — Présence Locale', 'blue', '590 €')">Démarrer ce projet</button>
+    </div>
+  </div>
+
+  <!-- F2 FEATURED -->
+  <div class="card featured">
+    <div class="card-band orange">
+      <span class="popular-badge">⭐ La plus choisie</span>
+      <span class="card-tag">Formule 2</span>
+      <h2>Développement Local</h2>
+      <p class="card-ideal">La formule stratégique — la plus vendable</p>
+    </div>
+    <div class="card-price">
+      <div class="price-old">Valeur estimée : 2 400 €</div>
+      <div class="price-main orange">990 €</div>
+      <div class="price-split">ou <strong>3 × 330 €</strong> sans frais</div>
+    </div>
+    <div class="card-objective">
+      <span class="arrow">🎯</span>
+      <span>Générer des <strong>appels réguliers via Google</strong> mois après mois.</span>
+    </div>
+    <div class="card-features">
+      <p class="features-label">Ce qui est inclus</p>
+      <ul class="features-list">
+        <li><span class="check orange">✓</span> Site 4 pages (Accueil, Services, Urgence, Contact)</li>
+        <li><span class="check orange">✓</span> SEO local avancé + mots-clés "métier + ville"</li>
+        <li><span class="check orange">✓</span> Mise en avant forte des avis clients</li>
+        <li><span class="check orange">✓</span> Optimisation mobile poussée</li>
+        <li><span class="check orange">✓</span> Tracking clics sur numéro de téléphone</li>
+        <li><span class="check orange">✓</span> Setup Google Search Console</li>
+        <li><span class="check orange">✓</span> Livraison sous 14 jours</li>
+      </ul>
+    </div>
+    <div class="card-cta">
+      <button class="btn orange" onclick="openModal('Formule 2 — Développement Local', 'orange', '990 €')">Je veux cette formule</button>
+    </div>
+  </div>
+
+  <!-- F3 -->
+  <div class="card">
+    <div class="card-band green">
+      <span class="card-tag">Formule 3</span>
+      <h2>Acquisition Locale</h2>
+      <p class="card-ideal">Positionnement premium — système complet</p>
+    </div>
+    <div class="card-price">
+      <div class="price-old">Valeur estimée : 3 500 €</div>
+      <div class="price-main green">1 390 €</div>
+      <div class="price-split">ou <strong>4 × 348 €</strong> sans frais</div>
+    </div>
+    <div class="card-objective">
+      <span class="arrow">🎯</span>
+      <span>Installer un vrai <strong>système d'acquisition local</strong> sur le long terme.</span>
+    </div>
+    <div class="card-features">
+      <p class="features-label">Ce qui est inclus</p>
+      <ul class="features-list">
+        <li><span class="check green">✓</span> Tout ce qui est dans la Formule 2</li>
+        <li><span class="check green">✓</span> Landing page dédiée urgence / dépannage</li>
+        <li><span class="check green">✓</span> Optimisation fiche Google Business Profile</li>
+        <li><span class="check green">✓</span> Système de collecte d'avis clients</li>
+        <li><span class="check green">✓</span> Mini stratégie SEO sur 3 mois</li>
+        <li><span class="check green">✓</span> Rapport mensuel de performance</li>
+        <li><span class="check green">✓</span> Livraison sous 21 jours</li>
+      </ul>
+    </div>
+    <div class="card-cta">
+      <button class="btn green" onclick="openModal('Formule 3 — Acquisition Locale', 'green', '1 390 €')">Discutons de votre projet</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- MAINTENANCE -->
+<div class="maint-section">
+  <div class="maint-box">
+    <div class="maint-left">
+      <p class="eyebrow">Option récurrente</p>
+      <h3>Maintenance &amp;<br>Optimisation</h3>
+      <p>Je m'occupe de tout pendant que vous travaillez. Votre site reste rapide, sécurisé et à jour — sans que vous ayez à y penser.</p>
+      <div class="maint-price-block">
+        <span class="maint-price">59 €</span>
+        <span class="maint-freq">/ mois · sans engagement</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;">
+        <button class="btn-maint" onclick="openModal('Maintenance & Optimisation', 'dark', '59 €/mois')">Ajouter la maintenance</button>
+        <span class="maint-note">Résiliable à tout moment</span>
+      </div>
+    </div>
+    <div class="maint-right">
+      <div class="maint-item">
+        <div class="mi-icon">🔐</div>
+        <div class="mi-title">Sécurité</div>
+        <div class="mi-desc">Surveillance & protection contre les intrusions</div>
+      </div>
+      <div class="maint-item">
+        <div class="mi-icon">⚡</div>
+        <div class="mi-title">Mises à jour</div>
+        <div class="mi-desc">CMS, plugins et thèmes toujours à jour</div>
+      </div>
+      <div class="maint-item">
+        <div class="mi-icon">✏️</div>
+        <div class="mi-title">Modifications</div>
+        <div class="mi-desc">Petits ajustements de contenu inclus</div>
+      </div>
+      <div class="maint-item">
+        <div class="mi-icon">📊</div>
+        <div class="mi-title">Performances</div>
+        <div class="mi-desc">Suivi des stats et optimisations régulières</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-note">
+  <p>Tous les tarifs sont <strong>indicatifs HT</strong> · Hébergement et domaine à votre charge et à votre nom · Devis personnalisé gratuit sur demande</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     MODAL DE CONTACT
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+    <div class="modal-header" id="modalHeader">
+      <button class="modal-close" onclick="closeModal()" aria-label="Fermer">✕</button>
+      <span class="modal-formule-tag" id="modalTag">Formule 2</span>
+      <h2 class="modal-title" id="modalTitle">Développement Local</h2>
+      <p class="modal-subtitle" id="modalSubtitle">Intéressé par cette formule ? Laissez vos coordonnées.</p>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- APPEL DIRECT -->
+      <a href="tel:+33755814511" class="call-option" id="callBtn">
+        <div class="call-icon">📞</div>
+        <div class="call-text">
+          <strong>Appel direct — réponse immédiate</strong>
+          <span>Du lundi au vendredi · 9h – 19h</span>
+        </div>
+        <span class="call-number">+33 7 55 81 45 11</span>
+      </a>
+
+      <div class="or-divider">ou laissez vos coordonnées</div>
+
+      <!-- FORMULAIRE -->
+      <div id="formContainer">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fname">Prénom *</label>
+            <input class="form-input" type="text" id="fname" name="fname" placeholder="Jean" autocomplete="given-name">
+            <span class="form-error" id="fnameError">Ce champ est requis.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lname">Nom *</label>
+            <input class="form-input" type="text" id="lname" name="lname" placeholder="Dupont" autocomplete="family-name">
+            <span class="form-error" id="lnameError">Ce champ est requis.</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email *</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="jean.dupont@exemple.fr" autocomplete="email">
+          <span class="form-error" id="emailError">Adresse email invalide.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Téléphone *</label>
+          <input class="form-input" type="tel" id="phone" name="phone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+          <span class="form-error" id="phoneError">Numéro de téléphone requis.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Votre activité / message (optionnel)</label>
+          <textarea class="form-input" id="message" name="message" rows="3" placeholder="Ex : Plombier à Lyon, je voudrais plus d'appels..." style="resize:vertical;"></textarea>
+        </div>
+        <p class="form-note">En envoyant ce formulaire, vous acceptez d'être recontacté par email ou téléphone concernant votre projet web. Aucune donnée n'est revendue.</p>
+        <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">
+          <span class="btn-text">✉️ &nbsp;Envoyer ma demande</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-msg" id="successMsg">
+        <div class="success-icon">✅</div>
+        <h3>Message envoyé !</h3>
+        <p>Merci pour votre intérêt. Je vous recontacte dans les <strong>24h</strong> pour discuter de votre projet.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── État modal ──
+  let currentFormule = '';
+  let currentAccent = 'blue';
+
+  function openModal(formule, accent, prix) {
+    currentFormule = formule;
+    currentAccent  = accent;
+
+    // Reset form & state
+    resetModal();
+
+    // Update content
+    const tag = document.getElementById('modalTag');
+    const title = document.getElementById('modalTitle');
+    const subtitle = document.getElementById('modalSubtitle');
+    const header = document.getElementById('modalHeader');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Remove all color classes
+    header.className = 'modal-header ' + accent;
+    tag.className = 'modal-formule-tag ' + accent;
+    submitBtn.className = 'btn-submit ' + accent;
+
+    tag.textContent = formule.split('—')[0].trim();
+    title.textContent = formule.includes('—') ? formule.split('—')[1].trim() : formule;
+    subtitle.textContent = `Intéressé par cette offre (${prix}) ? Laissez vos coordonnées.`;
+
+    // Show/hide call button coloring
+    document.getElementById('callBtn').style.borderColor = '';
+
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Focus first input
+    setTimeout(() => document.getElementById('fname').focus(), 300);
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function resetModal() {
+    // Reset form values
+    ['fname','lname','email','phone','message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+      el?.classList.remove('error');
+    });
+    ['fnameError','lnameError','emailError','phoneError'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+
+    document.getElementById('formContainer').style.display = 'block';
+    document.getElementById('successMsg').style.display = 'none';
+
+    const btn = document.getElementById('submitBtn');
+    btn.classList.remove('loading');
+  }
+
+  // ── Validation ──
+  function validateField(id, errId, validator) {
+    const el = document.getElementById(id);
+    const err = document.getElementById(errId);
+    if (!validator(el.value.trim())) {
+      el.classList.add('error');
+      err.style.display = 'block';
+      return false;
+    }
+    el.classList.remove('error');
+    err.style.display = 'none';
+    return true;
+  }
+
+  function handleSubmit() {
+    const btn = document.getElementById('submitBtn');
+    if (btn.classList.contains('loading')) return;
+
+    const v1 = validateField('fname',  'fnameError', v => v.length >= 2);
+    const v2 = validateField('lname',  'lnameError', v => v.length >= 2);
+    const v3 = validateField('email',  'emailError',  v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+    const v4 = validateField('phone',  'phoneError',  v => v.replace(/\s/g,'').length >= 8);
+
+    if (!v1 || !v2 || !v3 || !v4) return;
+
+    // Collect data
+    const fname   = document.getElementById('fname').value.trim();
+    const lname   = document.getElementById('lname').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    btn.classList.add('loading');
+
+    // ── Envoi via FormSubmit (service gratuit, aucune config serveur) ──
+    const formData = new FormData();
+    formData.append('_to',      'arthurheumi99@gmail.com');
+    formData.append('_subject', `[Site Web PME] Nouvelle demande — ${currentFormule}`);
+    formData.append('_template', 'table');
+    formData.append('_captcha',  'false');
+    formData.append('Prénom',    fname);
+    formData.append('Nom',       lname);
+    formData.append('Email',     email);
+    formData.append('Téléphone', phone);
+    formData.append('Formule',   currentFormule);
+    formData.append('Message',   message || '(non renseigné)');
+
+    fetch('https://formsubmit.co/ajax/arthurheumi99@gmail.com', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
+      btn.classList.remove('loading');
+      if (data.success === 'true' || data.success === true) {
+        showSuccess();
+      } else {
+        showFallback(fname, lname, email, phone, message);
+      }
+    })
+    .catch(() => {
+      btn.classList.remove('loading');
+      // Fallback : ouvre le client mail si FormSubmit échoue
+      showFallback(fname, lname, email, phone, message);
+    });
+  }
+
+  function showSuccess() {
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    // Auto-close après 4s
+    setTimeout(closeModal, 4000);
+  }
+
+  function showFallback(fname, lname, email, phone, message) {
+    // Fallback : compose un mailto en cas d'échec réseau
+    const subject = encodeURIComponent(`[Site Web PME] Nouvelle demande — ${currentFormule}`);
+    const body = encodeURIComponent(
+      `Prénom : ${fname}\nNom : ${lname}\nEmail : ${email}\nTéléphone : ${phone}\nFormule : ${currentFormule}\nMessage : ${message || '(non renseigné)'}`
+    );
+    window.location.href = `mailto:arthurheumi99@gmail.com?subject=${subject}&body=${body}`;
+    showSuccess();
+  }
+
+  // Live validation on blur
+  ['fname','lname'].forEach(id => {
+    document.getElementById(id)?.addEventListener('blur', () =>
+      validateField(id, id + 'Error', v => v.length >= 2));
+  });
+
+  document.getElementById('email')?.addEventListener('blur', () =>
+    validateField('email', 'emailError', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)));
+
+  document.getElementById('phone')?.addEventListener('blur', () =>
+    validateField('phone', 'phoneError', v => v.replace(/\s/g,'').length >= 8));
+</script>
+</body>
+</html>
